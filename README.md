@@ -161,3 +161,7 @@ dist/               saída do build do frontend (não versionada)
 ```
 
 As convenções de código e os princípios do projeto estão em [AGENTS.md](AGENTS.md).
+
+## Licença
+
+Distribuído sob a licença MIT. Veja [LICENSE](LICENSE).

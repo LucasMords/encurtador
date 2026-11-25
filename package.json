@@ -2,6 +2,7 @@
   "name": "encurtador",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
   "description": "Encurtador de URLs com API pública e interface web",
   "type": "module",
   "engines": {
