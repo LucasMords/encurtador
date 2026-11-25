@@ -42,6 +42,7 @@ src/
     api/            chamadas HTTP ao backend
     componentes/    componentes React
 testes/             testes automatizados
+docs/imagens/       capturas de tela usadas no README
 dist/               saída do build do frontend (não versionada)
 ```
 

@@ -4,6 +4,11 @@ Recebe uma URL longa, gera um código curto e redireciona quem acessa o código 
 URL original. Tem uma interface web, com QR Code e tema claro ou escuro, e uma API
 aberta e pública, que não exige autenticação.
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/imagens/tela-escuro.png">
+  <img src="docs/imagens/tela-claro.png" alt="Tela do encurtador com o formulário, o link curto gerado, o botão de copiar e o QR Code">
+</picture>
+
 ## Tecnologias
 
 - [Node.js](https://nodejs.org/) 24 ou superior, executando o TypeScript do
