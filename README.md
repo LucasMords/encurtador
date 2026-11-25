@@ -50,6 +50,7 @@ npm run dev:frontend
 | Rodar os testes                  | `npm test`             |
 | Verificar os tipos               | `npm run typecheck`    |
 | Formatar o código                | `npm run format`       |
+| Verificar lint e formatação      | `npm run lint`         |
 
 ### Configuração
 

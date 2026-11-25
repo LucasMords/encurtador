@@ -22,7 +22,7 @@ A API é aberta e pública: **não há autenticação**, e ela não deve ser adi
 - Banco de dados: SQLite, pelo módulo nativo `node:sqlite`
 - Documentação da API: Swagger (`@fastify/swagger` e `@fastify/swagger-ui`)
 - Testes: `node:test`
-- Formatação: Biome (`biome.json`)
+- Formatação e lint: Biome (`biome.json`)
 - Frontend: React com Vite, servido pelo próprio Fastify (`@fastify/static`) a
   partir de `dist/`; QR Code com `qrcode.react`; tema claro ou escuro conforme o
   sistema
@@ -80,7 +80,7 @@ A documentação interativa (Swagger UI) fica em `/docs`, e o OpenAPI em JSON, e
 | Rodar os testes                  | `npm test`             |
 | Verificar os tipos               | `npm run typecheck`    |
 | Formatar o código                | `npm run format`       |
-| Lint                             | _a definir_            |
+| Verificar lint e formatação      | `npm run lint`         |
 
 Ao criar scripts no `package.json`, registre-os nesta tabela.
 

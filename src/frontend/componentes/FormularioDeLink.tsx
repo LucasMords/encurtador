@@ -27,6 +27,7 @@ export function FormularioDeLink({ enviando, erro, aoEnviar }: Props) {
           id={ID_DO_CAMPO}
           type="url"
           required
+          // biome-ignore lint/a11y/noAutofocus: o campo é a única ação inicial da página
           autoFocus
           autoComplete="off"
           placeholder="https://exemplo.com/pagina"
