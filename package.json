@@ -13,7 +13,8 @@
     "build": "vite build",
     "start": "node src/servidor.ts",
     "test": "node --test \"testes/**/*.test.ts\"",
-    "typecheck": "tsc && tsc -p src/frontend"
+    "typecheck": "tsc && tsc -p src/frontend",
+    "format": "biome check --write"
   },
   "dependencies": {
     "@fastify/static": "^10.1.12",
@@ -25,6 +26,7 @@
     "react-dom": "^19.3.1"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.6.9",
     "@types/node": "^24.19.2",
     "@types/react": "^19.3.1",
     "@types/react-dom": "^19.3.0",

@@ -49,6 +49,7 @@ npm run dev:frontend
 | Rodar em produção (após o build) | `npm start`            |
 | Rodar os testes                  | `npm test`             |
 | Verificar os tipos               | `npm run typecheck`    |
+| Formatar o código                | `npm run format`       |
 
 ### Configuração
 

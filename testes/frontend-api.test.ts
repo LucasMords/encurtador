@@ -20,7 +20,10 @@ describe("criarLink", () => {
 
     assert.deepEqual(await criarLink(URL_LONGA), link);
 
-    const [caminho, opcoes] = simulacao.mock.calls[0]?.arguments as unknown as [string, RequestInit];
+    const [caminho, opcoes] = simulacao.mock.calls[0]?.arguments as unknown as [
+      string,
+      RequestInit,
+    ];
     assert.equal(caminho, "/links");
     assert.equal(opcoes.method, "POST");
     assert.equal(opcoes.body, JSON.stringify({ url: URL_LONGA }));
@@ -40,7 +43,11 @@ describe("criarLink", () => {
     await assert.rejects(criarLink(URL_LONGA), erroComMensagem(/Confira o endereço/));
   });
 
-  for (const [status, corpo] of [[502, "<html></html>"], [500, "null"], [201, "{}"]] as const) {
+  for (const [status, corpo] of [
+    [502, "<html></html>"],
+    [500, "null"],
+    [201, "{}"],
+  ] as const) {
     it(`usa uma mensagem genérica para ${status} com corpo ${corpo}`, async (contexto) => {
       simularResposta(contexto, status, corpo);
       await assert.rejects(criarLink(URL_LONGA), erroComMensagem(/Algo deu errado/));
