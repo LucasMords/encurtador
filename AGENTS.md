@@ -53,7 +53,8 @@ dist/               saída do build do frontend (não versionada)
 | `GET /:codigo` | 302 para a URL original                         | 404                |
 
 O corpo de `POST /links` é `{ "url": "https://..." }`. Os erros têm o formato
-`{ "erro": "...", "mensagem": "..." }`.
+`{ "erro": "...", "mensagem": "..." }`, exceto o 404 de `GET /:codigo` para quem aceita
+`text/html`, que é a página `nao-encontrado.html` do frontend.
 
 A documentação interativa (Swagger UI) fica em `/docs`, e o OpenAPI em JSON, em
 `/docs/json`. Toda rota nova deve ter um `schema` com resumo, entradas e respostas.

@@ -117,7 +117,8 @@ Os códigos têm 7 caracteres e diferenciam maiúsculas de minúsculas.
 
 ### Erros
 
-Todos os erros têm o mesmo formato:
+Todos os erros têm o mesmo formato. A exceção é abrir um link inexistente no navegador
+(`Accept: text/html`), que mostra uma página com status 404:
 
 ```json
 {
