@@ -1,0 +1,218 @@
+:root {
+  color-scheme: light dark;
+
+  --fundo: light-dark(#eef2ef, #0f1613);
+  --papel: light-dark(#ffffff, #18211d);
+  --tinta: light-dark(#14231c, #e6efe9);
+  --tinta-suave: light-dark(#53655c, #9db0a5);
+  --linha: light-dark(#84958b, #64776c);
+  --destaque: light-dark(#0b6b4a, #6fdcaa);
+  --destaque-forte: light-dark(#08523a, #93ebc2);
+  --sobre-destaque: light-dark(#ffffff, #06251a);
+  --perigo: light-dark(#b3261e, #ff9d94);
+
+  --texto: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: ui-monospace, "Cascadia Code", Menlo, Consolas, monospace;
+  --raio: 10px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--fundo);
+  color: var(--tinta);
+  font: 1rem/1.5 var(--texto);
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+.pagina {
+  width: min(100% - 2rem, 44rem);
+  margin-inline: auto;
+  padding-block: clamp(2.5rem, 14vh, 8rem) 3rem;
+  display: grid;
+  gap: 2rem;
+}
+
+.pagina > * {
+  min-width: 0;
+}
+
+h1 {
+  font-size: clamp(2rem, 7vw, 3.25rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.apoio {
+  margin-top: 0.75rem;
+  color: var(--tinta-suave);
+  font-size: 1.125rem;
+}
+
+/* Formulário */
+
+.formulario label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.campos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+input {
+  flex: 1 1 18rem;
+  min-width: 0;
+  padding: 0.8rem 1rem;
+  border: 1.5px solid var(--linha);
+  border-radius: var(--raio);
+  background: var(--papel);
+  color: inherit;
+  font: 1rem var(--mono);
+}
+
+input::placeholder {
+  color: var(--tinta-suave);
+  opacity: 1;
+}
+
+input[aria-invalid="true"] {
+  border-color: var(--perigo);
+}
+
+button {
+  padding: 0.8rem 1.5rem;
+  border: 0;
+  border-radius: var(--raio);
+  background: var(--destaque);
+  color: var(--sobre-destaque);
+  font: 600 1rem var(--texto);
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--destaque-forte);
+}
+
+button[aria-disabled="true"] {
+  cursor: progress;
+  opacity: 0.7;
+}
+
+:focus-visible {
+  outline: 3px solid var(--destaque);
+  outline-offset: 2px;
+}
+
+.formulario button {
+  flex: 1 0 auto;
+  min-width: 9.5rem;
+}
+
+@media (min-width: 36rem) {
+  .formulario button {
+    flex-grow: 0;
+  }
+}
+
+.erro {
+  min-height: 1.5em;
+  margin-top: 0.5rem;
+  color: var(--perigo);
+}
+
+/* Comprovante: um bilhete com canhoto destacável */
+
+.comprovante {
+  display: flex;
+  border-radius: var(--raio);
+  background: var(--papel);
+  animation: surgir 260ms ease-out;
+}
+
+.dados {
+  flex: 1;
+  min-width: 0;
+  padding: 1.5rem;
+}
+
+h2 {
+  color: var(--tinta-suave);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.url-curta {
+  display: block;
+  margin-top: 0.25rem;
+  color: var(--destaque);
+  font: 600 clamp(1.1rem, 4vw, 1.375rem) / 1.35 var(--mono);
+  overflow-wrap: anywhere;
+}
+
+.url-original {
+  margin-top: 0.5rem;
+  overflow: hidden;
+  color: var(--tinta-suave);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.copiar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  margin-top: 1.25rem;
+}
+
+.canhoto {
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  border-left: 2px dashed var(--linha);
+}
+
+/* O fundo do QR Code fica branco nos dois temas para os leitores reconhecerem. */
+.canhoto svg {
+  display: block;
+  border-radius: 6px;
+}
+
+@media (max-width: 36rem) {
+  .comprovante {
+    flex-direction: column;
+  }
+
+  .canhoto {
+    border-top: 2px dashed var(--linha);
+    border-left: 0;
+  }
+}
+
+@keyframes surgir {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .comprovante {
+    animation: none;
+  }
+}

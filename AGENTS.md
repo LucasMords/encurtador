@@ -9,20 +9,22 @@ quem acessa o código para a URL original.
 
 A API é aberta e pública: **não há autenticação**, e ela não deve ser adicionada.
 
-**Estado atual:** backend e controle de dados implementados; frontend ainda não
-iniciado.
+**Estado atual:** backend, controle de dados e frontend implementados.
 
 ## Stack
 
 - Linguagem: TypeScript
-- Runtime: Node.js LTS (24 ou superior), executando TypeScript sem etapa de build
+- Runtime: Node.js LTS (24 ou superior), executando o TypeScript do
+  backend sem etapa de build
 - Gerenciador de pacotes: npm (não use yarn, pnpm ou bun)
 - Framework HTTP: Fastify, pelo suporte a TypeScript e pela
   validação por schema
 - Banco de dados: SQLite, pelo módulo nativo `node:sqlite`
 - Documentação da API: Swagger (`@fastify/swagger` e `@fastify/swagger-ui`)
 - Testes: `node:test`
-- Frontend: _a definir_
+- Frontend: React com Vite, servido pelo próprio Fastify (`@fastify/static`) a
+  partir de `dist/`; QR Code com `qrcode.react`; tema claro ou escuro conforme o
+  sistema
 
 Não escolha por conta própria o que está "a definir" nem troque o que já foi
 decidido: pergunte e registre a decisão aqui.
@@ -36,15 +38,19 @@ src/
   backend/links/    regras de negócio e interface do repositório
   backend/http/     rotas Fastify e respostas de erro
   dados/            controle de dados (SQLite)
+  frontend/         interface web (React); tem seu próprio tsconfig.json
+    api/            chamadas HTTP ao backend
+    componentes/    componentes React
 testes/             testes automatizados
+dist/               saída do build do frontend (não versionada)
 ```
 
 ## API
 
-| Rota           | Sucesso                                         | Erros         |
-| -------------- | ----------------------------------------------- | ------------- |
+| Rota           | Sucesso                                         | Erros              |
+| -------------- | ----------------------------------------------- | ------------------ |
 | `POST /links`  | 201 com `codigo`, `url`, `criadoEm`, `urlCurta` | 400, 413, 415, 503 |
-| `GET /:codigo` | 302 para a URL original                         | 404           |
+| `GET /:codigo` | 302 para a URL original                         | 404                |
 
 O corpo de `POST /links` é `{ "url": "https://..." }`. Os erros têm o formato
 `{ "erro": "...", "mensagem": "..." }`.
@@ -63,14 +69,16 @@ A documentação interativa (Swagger UI) fica em `/docs`, e o OpenAPI em JSON, e
 
 ## Comandos
 
-| Tarefa                   | Comando             |
-| ------------------------ | ------------------- |
-| Instalar dependências    | `npm install`       |
-| Rodar em desenvolvimento | `npm run dev`       |
-| Rodar em produção        | `npm start`         |
-| Rodar os testes          | `npm test`          |
-| Verificar os tipos       | `npm run typecheck` |
-| Lint / formatação        | _a definir_         |
+| Tarefa                           | Comando                |
+| -------------------------------- | ---------------------- |
+| Instalar dependências            | `npm install`          |
+| API em desenvolvimento           | `npm run dev`          |
+| Frontend em desenvolvimento      | `npm run dev:frontend` |
+| Gerar o build do frontend        | `npm run build`        |
+| Rodar em produção (após o build) | `npm start`            |
+| Rodar os testes                  | `npm test`             |
+| Verificar os tipos               | `npm run typecheck`    |
+| Lint / formatação                | _a definir_            |
 
 Ao criar scripts no `package.json`, registre-os nesta tabela.
 

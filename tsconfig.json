@@ -14,5 +14,6 @@
     "verbatimModuleSyntax": true,
     "skipLibCheck": true
   },
-  "include": ["src", "testes"]
+  "include": ["src", "testes", "vite.config.ts"],
+  "exclude": ["src/frontend"]
 }
