@@ -20,10 +20,9 @@ describe("criarLink", () => {
 
     assert.deepEqual(await criarLink(URL_LONGA), link);
 
-    const [caminho, opcoes] = simulacao.mock.calls[0]?.arguments as unknown as [
-      string,
-      RequestInit,
-    ];
+    const chamada = simulacao.mock.calls[0];
+    assert.ok(chamada);
+    const [caminho, opcoes] = chamada.arguments as unknown as [string, RequestInit];
     assert.equal(caminho, "/links");
     assert.equal(opcoes.method, "POST");
     assert.equal(opcoes.body, JSON.stringify({ url: URL_LONGA }));
