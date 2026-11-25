@@ -1,0 +1,25 @@
+{
+  "name": "encurtador",
+  "version": "0.1.0",
+  "private": true,
+  "description": "API pública de encurtamento de URLs",
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "dev": "node --watch src/servidor.ts",
+    "start": "node src/servidor.ts",
+    "test": "node --test \"testes/**/*.test.ts\"",
+    "typecheck": "tsc"
+  },
+  "dependencies": {
+    "@fastify/swagger": "^9.9.5",
+    "@fastify/swagger-ui": "^6.1.5",
+    "fastify": "^5.12.8"
+  },
+  "devDependencies": {
+    "@types/node": "^24.19.2",
+    "typescript": "^7.0.2"
+  }
+}
