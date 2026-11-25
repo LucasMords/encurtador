@@ -2,6 +2,15 @@ import { TAMANHO_MAXIMO_DA_URL } from "../links/validador-de-url.ts";
 
 const TAG = "Links";
 
+const CORPO_DE_ERRO = {
+  type: "object",
+  required: ["erro", "mensagem"],
+  properties: {
+    erro: { type: "string" },
+    mensagem: { type: "string" },
+  },
+} as const;
+
 export const esquemaDeCriacao = {
   tags: [TAG],
   summary: "Cria um link curto",
@@ -52,18 +61,19 @@ export const esquemaDeRedirecionamento = {
   },
   response: {
     302: { description: "Redirecionamento para a URL original", type: "null" },
-    404: descreverErro("Link não encontrado"),
+    404: {
+      description: "Link não encontrado: página para navegadores, JSON para os demais clientes",
+      content: {
+        "application/json": { schema: CORPO_DE_ERRO },
+        "text/html": { schema: { type: "string" } },
+      },
+    },
   },
 } as const;
 
 function descreverErro(description: string) {
   return {
     description,
-    type: "object",
-    required: ["erro", "mensagem"],
-    properties: {
-      erro: { type: "string" },
-      mensagem: { type: "string" },
-    },
+    ...CORPO_DE_ERRO,
   } as const;
 }

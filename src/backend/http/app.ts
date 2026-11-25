@@ -3,8 +3,9 @@ import Fastify, { type FastifyInstance } from "fastify";
 import type { Encurtador } from "../links/encurtador.ts";
 import { registrarArquivosDoFrontend } from "./arquivos-do-frontend.ts";
 import { registrarDocumentacao } from "./documentacao.ts";
+import { lerPaginaNaoEncontrada } from "./pagina-nao-encontrada.ts";
 import { registrarRotasDeLinks } from "./rotas-de-links.ts";
-import { tratarErro, tratarRotaInexistente } from "./tratador-de-erros.ts";
+import { criarTratadorDeErros, tratarRotaInexistente } from "./tratador-de-erros.ts";
 
 const LIMITE_DO_CORPO_EM_BYTES = 16 * 1024;
 
@@ -22,9 +23,11 @@ export function criarApp({
   registrarLogs,
   pastaDoFrontend,
 }: OpcoesDoApp): FastifyInstance {
+  const pagina =
+    pastaDoFrontend === undefined ? undefined : lerPaginaNaoEncontrada(pastaDoFrontend);
   const app = Fastify({ logger: registrarLogs, bodyLimit: LIMITE_DO_CORPO_EM_BYTES });
 
-  app.setErrorHandler(tratarErro);
+  app.setErrorHandler(criarTratadorDeErros(pagina));
   app.setNotFoundHandler(tratarRotaInexistente);
   registrarDocumentacao(app);
   if (pastaDoFrontend !== undefined) {
