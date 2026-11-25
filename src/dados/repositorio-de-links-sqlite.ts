@@ -11,9 +11,7 @@ export class RepositorioDeLinksSqlite implements RepositorioDeLinks {
       `INSERT INTO links (codigo, url, criado_em) VALUES (?, ?, ?)
        ON CONFLICT (codigo) DO NOTHING`,
     );
-    this.#busca = banco.prepare(
-      "SELECT codigo, url, criado_em FROM links WHERE codigo = ?",
-    );
+    this.#busca = banco.prepare("SELECT codigo, url, criado_em FROM links WHERE codigo = ?");
   }
 
   salvar({ codigo, url, criadoEm }: Link): boolean {

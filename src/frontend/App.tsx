@@ -33,9 +33,7 @@ export function App() {
 
       <FormularioDeLink enviando={enviando} erro={erro} aoEnviar={encurtar} />
 
-      <div aria-live="polite">
-        {link && <Comprovante key={link.urlCurta} link={link} />}
-      </div>
+      <div aria-live="polite">{link && <Comprovante key={link.urlCurta} link={link} />}</div>
     </main>
   );
 }
