@@ -94,7 +94,8 @@ input[aria-invalid="true"] {
   border-color: var(--perigo);
 }
 
-button {
+button,
+.acao {
   padding: 0.8rem 1.5rem;
   border: 0;
   border-radius: var(--raio);
@@ -104,7 +105,13 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+.acao {
+  display: inline-block;
+  text-decoration: none;
+}
+
+button:hover,
+.acao:hover {
   background: var(--destaque-forte);
 }
 

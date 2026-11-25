@@ -9,6 +9,9 @@ export default defineConfig({
   build: {
     outDir: "../../dist",
     emptyOutDir: true,
+    rolldownOptions: {
+      input: ["src/frontend/index.html", "src/frontend/nao-encontrado.html"],
+    },
   },
   server: {
     proxy: { "/links": ENDERECO_DA_API },
